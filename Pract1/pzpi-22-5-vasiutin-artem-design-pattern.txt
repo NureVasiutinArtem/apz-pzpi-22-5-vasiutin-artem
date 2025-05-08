@@ -1,0 +1,441 @@
+Міністерство освіти та науки України
+Харківський національний університет радіоелектроніки
+
+
+
+
+Практична робота №1
+з дісципліни: «Архітектура программного забеспечення»
+
+
+
+
+
+
+Виконав
+Ст.гр ПЗПІ-22-5
+Васютін Артем Віталійвоич
+
+Перевірив
+Ст. викл Сокорчук І.П
+
+
+
+
+
+
+
+
+
+
+Харків 2025
+1 ІСТОРІЯ ЗМІН
+№	Дата 	Версія звіту	Опис змін та виправлень
+1	08.05.2025	0.1	Створено розділи «Завдання», «Опис виконаної роботи», «Висновки», «Додаток Б»  «Додаток В» та «Додаток А»
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2 ЗАВДАННЯ
+1.	Підготувати доповідь на тему «Шаблон проектування ПЗ «Прототип».
+2.	Створити та оформити слайди презентації доповіді.
+3.	Створити та опублікувати на Youtube відеозапис доповіді.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3	ОПИС ВИКОНАНОЇ РОБОТИ
+
+1.	Було створено доповідь на тему: «Шаблон проектування ПЗ
+«Прототип».
+2.	Було написано код для демонстрування ефективності шаблону
+«Прототип» (див.Додаток В).
+3.	Було створено та оформлено слайди презентації доповіді (див. Додаток
+Б).
+4.	Було створено та опубліковано на YouTube відеозапис доповіді (див.
+Додаток А).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4	ВИСНОВКИ
+
+У результаті виконання практичного завдання було розглянуто призначення, принципи роботи та переваги використання шаблону проєктування Прототип, що дозволяє створювати копії об'єктів без прив’язки до їхніх конкретних класів. Такий підхід сприяє побудові гнучкого, масштабованого та розширюваного програмного забезпечення, особливо в ситуаціях, коли створення об’єктів є ресурсоємним або складним.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ДОДАТОК А
+Відео запис на YouTube: https://youtu.be/VpNaXGwjTSY
+Хронологія відео:
+00:03 Титульний слайд.
+00:18 Вступ: що таке патерни проєктування?
+01:47 Що таке "Прототип"?
+02:54 Яку проблему вирішує шаблон "Прототип"?
+03:46 Перший крок до розв'язання проблеми.
+05:05 Повне розв'язання проблеми – реалізація шаблону.
+05:49 Коли використовувати "Прототип".
+06:35 Коли НЕ використовувати "Прототип".
+07:24 Переваги і недоліки шаблону "Прототип".
+09:31 Список використаних джерел.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ДОДАТОК Б
+Слайди презентації
+
+
+ 
+Рисунок Б.1 – Титульний слайд
+
+ 
+Рисунок Б.2 – Вступ
+ 
+Рисунок Б.3 – Що таке «Прототип»
+
+ 
+Рисунок Б.4 – Яку проблему вирішує шаблон «Прототип»
+
+ Рисунок Б.5 – Перший крок до розв'язання проблеми
+
+ 
+Рисунок Б.6 – Повне розв'язання проблеми – реалізація шаблону
+
+ 
+Рисунок Б.7 – Коли використовувати "Прототип"
+
+ 
+Рисунок Б.8 – Коли НЕ використовувати "Прототип"
+
+ 
+Рисунок Б.9 – Переваги та недоліки шаблону «Прототип» 
+
+
+ 
+Рисунок Б.10 – Список використаних джерел
+
+
+
+
+
+ДОДАТОК В
+Програмний код
+Приклад неправильного коду:
+
+3	public class Animal
+4	{
+5	    public string Name { get; set; }
+6	    public int Age { get; set; }
+7	
+8	    public Animal(string name, int age)
+9	    {
+10	        Name = name;
+11	        Age = age;
+12	    }
+13	
+14	    public override string ToString()
+15	    {
+16	        return $"Тварина: {Name}, Вік: {Age}";
+17	    }
+18	}
+19	
+20	public class Cat : Animal
+21	{
+22	    public string Breed { get; set; }
+23	
+24	    public Cat(string imya, int vik, string breed)
+25	        : base(imya, vik)
+26	    {
+27	        Breed = breed;
+28	    }
+29	
+30	    public override string ToString()
+31	    {
+32	        return $"Кіт: {Name}, Вік: {Age}, Порода: {Breed}";
+33	    }
+34	}
+35	
+36	public class Pes : Animal
+37	{
+38	    public string Widht { get; set; }
+39	
+40	    public Pes(string name, int age, string widht)
+41	        : base(name, age)
+42	    {
+43	        Widht = widht;
+44	    }
+45	
+46	    public override string ToString()
+47	    {
+48	        return $"Пес: {Name}, Вік: {Age}, Розмір: {Widht}";
+49	    }
+50	}
+51	
+52	public class Program
+53	{
+54	    static void Main()
+55	    {
+56	        Animal kit = new Cat("Мурчик", 2, "Сіамський");
+57	        Animal kitClon=new Cat(kit.Name, kit.Age, kit.Breed);
+58	
+59	        
+60	    }
+61	}
+
+Приклад першого кроку розв’язання проблеми:
+
+1	public class Animal
+2	{
+3	    public string Name { get; set; }
+4	    public int Age { get; set; }
+5	
+6	    public Animal(string name, int age)
+7	    {
+8	        Name = name;
+9	        Age = age;
+10	    }
+11	    public Animal(Animal other)
+12	    {
+13	        Name = other.Name;
+14	        Age = other.Age;
+15	    }
+16	    public override string ToString()
+17	    {
+18	        return $"Тварина: {Name}, Вік: {Age}";
+19	    }
+20	}
+21	
+22	public class Cat : Animal
+23	{
+24	    public string Breed { get; set; }
+25	
+26	    public Cat(string imya, int vik, string breed)
+27	        : base(imya, vik)
+28	    {
+29	        Breed = breed;
+30	    }
+31	    public Cat(Cat other) : base(other)
+32	    {
+33	        Breed = other.Breed;
+34	    }
+35	
+36	    public override string ToString()
+37	    {
+38	        return $"Кіт: {Name}, Вік: {Age}, Порода: {Breed}";
+39	    }
+40	}
+41	
+42	public class Pes : Animal
+43	{
+44	    public string Widht { get; set; }
+45	
+46	    public Pes(string name, int age, string widht)
+47	        : base(name, age)
+48	    {
+49	        Widht = widht;
+50	    }
+51	
+52	    public override string ToString()
+53	    {
+54	        return $"Пес: {Name}, Вік: {Age}, Розмір: {Widht}";
+55	    }
+56	}
+57	
+58	public class Program
+59	{
+60	    static void Main()
+61	    {
+62	        Animal kit = new Cat("Мурчик", 2, "Сіамський");
+63	        Animal kitClon = new Cat((Cat)kit);
+64	
+65	    }
+66	}
+67	
+
+Приклад правильного коду:
+
+1	abstract class Animal
+2	{
+3	    public abstract Animal Clone();
+4	    public string Name { get; set; }
+5	    public int Age { get; set; }
+6	
+7	    public Animal(string name, int age)
+8	    {
+9	        Name = name;
+10	        Age = age;
+11	    }
+12	    public Animal(Animal other)
+13	    {
+14	        Name = other.Name;
+15	        Age = other.Age;
+16	    }
+17	    public override string ToString()
+18	    {
+19	        return $"Тварина: {Name}, Вiк: {Age}";
+20	    }
+21	}
+22	
+23	class Cat : Animal
+24	{
+25	    public override Animal Clone()
+26	    {
+27	        return new Cat(this);
+28	    }
+29	    public string Breed { get; set; }
+30	
+31	    public Cat(string imya, int vik, string breed)
+32	        : base(imya, vik)
+33	    {
+34	        Breed = breed;
+35	    }
+36	    public Cat(Cat other) : base(other)
+37	    {
+38	        Breed = other.Breed;
+39	    }
+40	
+41	    public override string ToString()
+42	    {
+43	        return $"Кiт: {Name}, Вiк: {Age}, Порода: {Breed}";
+44	    }
+45	}
+46	class Dog : Animal
+47	{
+48	    public override Animal Clone()
+49	    {
+50	        throw new NotImplementedException();
+51	    }
+52	    public string Widht { get; set; }
+53	
+54	
+55	    public Dog(string name, int age, string widht)
+56	        : base(name, age)
+57	    {
+58	        Widht = widht;
+59	    }
+60	
+61	    public override string ToString()
+62	    {
+63	        return $"Пес: {Name}, Вік: {Age}, Розмір: {Widht}";
+64	    }
+65	}
+66	
+67	public class Program
+68	{
+69	    static void Main()
+70	    {
+71	        Animal cat = new Cat("Мурчик", 2, "Сiамський");
+72	        Animal catClone = cat.Clone();
+73	        Console.WriteLine(catClone.ToString());
+74	    }
+75	}
+
+
