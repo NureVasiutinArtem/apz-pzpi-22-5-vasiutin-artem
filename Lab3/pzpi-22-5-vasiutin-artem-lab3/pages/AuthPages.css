@@ -1,0 +1,93 @@
+.auth-container {
+    min-width: 300px;
+    max-width: 500px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background-color: #223144;
+    color: #e8f4ff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+    .auth-container h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #80d0ff;
+    }
+
+    .auth-container form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .auth-container input {
+        padding: 0.75rem;
+        border: 1px solid #80d0ff;
+        border-radius: 4px;
+        background-color: #2c3e50;
+        color: #e8f4ff;
+        font-size: 1rem;
+    }
+
+        .auth-container input::placeholder {
+            color: #a6c7de;
+        }
+
+        .auth-container input:focus {
+            outline: none;
+            border-color: #4bb8ff;
+            background-color: #345a72;
+        }
+
+    .auth-container button {
+        padding: 0.75rem;
+        border: none;
+        background-color: #80d0ff;
+        color: #102a43;
+        font-weight: 600;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.25s;
+    }
+
+        .auth-container button:hover {
+            background-color: #4bb8ff;
+        }
+
+@media (prefers-color-scheme: light) {
+    .auth-container {
+        background-color: #ffffff;
+        color: #102a43;
+        border: 1px solid #a8d9f7;
+    }
+
+        .auth-container h2 {
+            color: #329ddb;
+        }
+
+        .auth-container input {
+            background-color: #f0f9ff;
+            color: #102a43;
+            border-color: #a8d9f7;
+        }
+
+            .auth-container input::placeholder {
+                color: #678d9e;
+            }
+
+            .auth-container input:focus {
+                background-color: #e0f3ff;
+                border-color: #329ddb;
+            }
+
+        .auth-container button {
+            background-color: #329ddb;
+            color: #ffffff;
+        }
+
+            .auth-container button:hover {
+                background-color: #1d91c0;
+            }
+}

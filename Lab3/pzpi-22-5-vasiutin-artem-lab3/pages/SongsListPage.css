@@ -1,0 +1,87 @@
+.songs-page {
+    min-width: 400px;
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    width: 50%;
+}
+
+    .songs-page h2 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .songs-page button {
+        display: block;
+        margin: 0 auto 2rem;
+        padding: 0.6rem 1.2rem;
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .songs-page button:hover {
+            background-color: #0056b3;
+        }
+
+    .songs-page ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .songs-page li {
+        background-color: #f9f9f9;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: background-color 0.3s;
+    }
+
+        .songs-page li:hover {
+            background-color: #e9ecef;
+        }
+
+        .songs-page li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+            .songs-page li a strong {
+                color: #000;
+            }
+
+.buttons-container {
+    display: flex;
+    flex-flow: row;
+    gap: 20px;
+}
+
+
+.option-button {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1rem;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+.option-button div {
+    align-self: center;
+}
+
+.option-button button {
+    margin: 0;
+}
+
+    .option-button strong {
+        color: #000;
+    }

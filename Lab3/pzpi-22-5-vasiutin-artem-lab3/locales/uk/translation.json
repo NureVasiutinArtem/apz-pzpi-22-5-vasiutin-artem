@@ -1,0 +1,202 @@
+﻿{
+  "AccountPage": {
+    "loading": "Завантаження...",
+    "title": "Інформація облікового запису",
+    "username": "Ім’я користувача",
+    "email": "Електронна пошта",
+    "created": "Створено",
+    "edit": "Редагувати",
+    "changePassword": "Змінити пароль",
+    "errorMessage": "Щось пішло не так. Будь ласка, спробуйте пізніше."
+  },
+  "DevicePage": {
+    "confirmDelete": "Ви впевнені, що хочете видалити цей пристрій?",
+    "failedDelete": "Не вдалося видалити пристрій.",
+    "loading": "Завантаження...",
+    "lastOnline": "Останній онлайн",
+    "unknown": "Невідомо",
+    "currently": "Зараз",
+    "on": "УВІМКНЕНО",
+    "off": "ВИМКНЕНО",
+    "edit": "Редагувати",
+    "turnOff": "Вимкнути",
+    "turnOn": "Увімкнути",
+    "delete": "Видалити",
+    "songs": "Пісні",
+    "by": "від",
+    "play": "Відтворити",
+    "template": "Шаблон",
+    "templates": "Шаблони"
+  },
+  "DeviceListPage": {
+    "devices": "Пристрої",
+    "registerDevice": "Зареєструвати пристрій"
+  },
+  "EffectsListPage": {
+    "confirmDelete": "Ви впевнені, що хочете видалити ефект",
+    "failedDelete": "Не вдалося видалити ефект.",
+    "effects": "Ефекти",
+    "addEffect": "Додати ефект",
+    "steady": "Постійний",
+    "blinking": "Мерехтіння",
+    "wave": "Хвиля",
+    "edit": "Редагувати",
+    "del": "Видалити"
+  },
+  "HomePage": {
+    "welcome": "Ласкаво просимо до LightShow Manager!"
+  },
+  "LoginPage": {
+    "errorDefault": "Щось пішло не так. Будь ласка, спробуйте пізніше.",
+    "login": "Увійти",
+    "loginAction": "Увійти"
+  },
+  "RegisterPage": {
+    "errorDefault": "Щось пішло не так. Будь ласка, спробуйте пізніше.",
+    "title": "Реєстрація",
+    "username": "Ім’я користувача",
+    "email": "Електронна пошта",
+    "password": "Пароль",
+    "repeatPassword": "Повторіть пароль",
+    "registerAction": "Зареєструватися"
+  },
+  "SongPage": {
+    "confirmDelete": "Ви впевнені, що хочете видалити цю пісню?",
+    "failedDelete": "Не вдалося видалити пісню.",
+    "loading": "Завантаження...",
+    "artist": "Виконавець:",
+    "edit": "Редагувати",
+    "delete": "Видалити",
+    "templates": "Шаблони",
+    "addTemplate": "Додати шаблон"
+  },
+  "SongsListPage": {
+    "songs": "Пісні",
+    "addSong": "Додати пісню",
+    "by": "від"
+  },
+  "TemplatePage": {
+    "confirmDelete": "Ви впевнені, що хочете видалити цей шаблон?",
+    "failedDelete": "Не вдалося видалити шаблон.",
+    "failedRemove": "Не вдалося видалити ефект.",
+    "loading": "Завантаження...",
+    "rename": "Перейменувати",
+    "delete": "Видалити",
+    "effects": "Ефекти",
+    "addEffect": "Додати ефект",
+    "at": "на",
+    "ms": "мс",
+    "for": "на"
+  },
+  "Header": {
+    "appName": "LightShow Manager",
+    "account": "Обліковий запис",
+    "devices": "Пристрої",
+    "songs": "Пісні",
+    "effects": "Ефекти",
+    "logout": "Вийти",
+    "login": "Увійти",
+    "register": "Зареєструватися",
+    "admin-users": "Користувачі"
+  },
+  "AddDeviceModal": {
+    "failedCreate": "Не вдалося зареєструвати пристрій.",
+    "title": "Реєстрація нового пристрою",
+    "deviceName": "Назва пристрою",
+    "deviceType": "Тип пристрою",
+    "register": "Зареєструвати",
+    "cancel": "Скасувати"
+  },
+  "AddEffectModal": {
+    "selectEffectError": "Будь ласка, виберіть ефект.",
+    "failedCreate": "Не вдалося додати ефект.",
+    "title": "Додати ефект",
+    "selectEffect": "Виберіть ефект:",
+    "timestamp": "Часова мітка (мс):",
+    "duration": "Тривалість (мс):",
+    "add": "Додати ефект",
+    "create": "Створити новий ефект",
+    "cancel": "Скасувати"
+  },
+  "AddSongModal": {
+    "failedCreate": "Не вдалося завантажити пісню.",
+    "title": "Додати пісню",
+    "name": "Назва пісні",
+    "artist": "Виконавець",
+    "duration": "Тривалість (мс):",
+    "create": "Додати",
+    "cancel": "Скасувати"
+  },
+  "AddTemplateModal": {
+    "defaultError": "Щось пішло не так. Будь ласка, спробуйте пізніше.",
+    "title": "Додати шаблон",
+    "name": "Назва шаблону",
+    "create": "Додати",
+    "cancel": "Скасувати"
+  },
+  "ChangePasswordModal": {
+    "title": "Зміна пароля",
+    "oldPassword": "Старий пароль",
+    "newPassword": "Новий пароль",
+    "change": "Змінити",
+    "cancel": "Скасувати"
+  },
+  "CreateEffectModal": {
+    "failedCreate": "Не вдалося створити ефект.",
+    "title": "Створити новий ефект",
+    "name": "Назва:",
+    "type": "Тип:",
+    "steady": "Постійний",
+    "blinking": "Мерехтіння",
+    "wave": "Хвиля",
+    "color": "Код кольору:",
+    "create": "Створити",
+    "cancel": "Скасувати"
+  },
+  "EditAccountModal": {
+    "title": "Редагувати обліковий запис",
+    "username": "Ім’я користувача",
+    "email": "Електронна пошта",
+    "save": "Зберегти",
+    "cancel": "Скасувати"
+  },
+  "EditDeviceModal": {
+    "title": "Редагувати пристрій",
+    "deviceName": "Назва пристрою",
+    "deviceType": "Тип пристрою",
+    "save": "Зберегти",
+    "cancel": "Скасувати"
+  },
+  "EditEffectModal": {
+    "failedEdit": "Не вдалося змінити ефект.",
+    "title": "Редагувати ефект",
+    "name": "Назва ефекту",
+    "type": "Тип:",
+    "steady": "Постійний",
+    "blinking": "Мерехтіння",
+    "wave": "Хвиля",
+    "color": "Код кольору:",
+    "save": "Зберегти",
+    "cancel": "Скасувати"
+  },
+  "EditSongModal": {
+    "title": "Редагування пісні",
+    "name": "Назва пісні",
+    "artist": "Виконавець",
+    "save": "Зберегти",
+    "cancel": "Скасувати"
+  },
+  "EditTemplateModal": {
+    "title": "Перейменувати шаблон",
+    "name": "Назва шаблону",
+    "save": "Зберегти",
+    "cancel": "Скасувати"
+  },
+  "Waveform": {
+    "pause": "Пауза",
+    "play": "Відтворити"
+  },
+  "AdminUsersPage": {
+    "title": "Користувачі"
+  }
+}

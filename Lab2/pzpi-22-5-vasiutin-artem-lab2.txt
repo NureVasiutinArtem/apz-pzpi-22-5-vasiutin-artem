@@ -1,0 +1,267 @@
+Міністерство освіти і науки України 
+Харківський національний університет радіоелектроніки
+Кафедра програмної інженерії
+
+
+
+
+
+Лабораторна робота
+з дисципліни: «Архітектура програмного забезпечення»
+на тему: «Розробка мобільного застосунку»
+
+
+
+
+
+
+Виконав 
+ст. гр. ПЗПІ-22-5
+Васютін Артем Віталійович
+
+Перевірив
+асистент кафедри ПІ 
+Дашенков Дмитро Сергійович
+
+
+
+
+Харків 2025
+ 
+МЕТА РОБОТИ
+
+	Метою роботи є розробити мобільний програмний застосунок для програмної системи для управління світломузичними ефектами LightShow Manager.
+
+ХІД РОБОТИ
+
+	В ході виконання лабораторної роботи виконувалася побудова UML діаграм прецедентів, компонентів, пакетів та діяльності (див. Додаток А). Разом, вони описують будову мобільного застосунку та його взаємодію з іншими частинами системи (веб-сервер).
+В ході виконання лабораторної роботи також виконувалися дизайн та розробка мобільного програмного застосунку для програмної системи LightShow Manager. Мобільний застосунок розроблявся під операційну систему Android на мові програмування Kotlin. Для розробки використовувалася середа розробки Android Studio. Для зв’язку із сервером використовувалася бібліотека Retrofit на боці мобільного додатку та технологія Dev Tunnels на боці веб серверу.
+Як зазначено у Vision & Scope документі, за допомогою мобільного додатку користувачі отримають обмежений доступ до функціоналу систему, який включає реєстрацію та вхід, перегляд список пісень, перегляд інформацію про певну пісню, прогрування певної пісні, перегляд списку девайсів, перегляд інформації про певний девайс, його увімкнення та вимикання, а також включення пісні зі світловими ефектами на відповідному девайсі.
+ 
+ВИСНОВКИ
+
+В ході виконання лабораторної роботи для програмної системи для управління світломузичними ефектами LightShow Manager було побудовано UML діаграми прецедентів, компонентів, пакетів та діяльності, а також розроблено мобільний додаток. Мобільний додаток розроблявся під Android на мові програмування Kotlin. 
+ 
+ДОДАТОК А
+Графічні матеріали
+
+ 
+Рисунок А.1 — UML-діаграма прецедентів
+
+ 
+Рисунок А.2 — UML-діаграма компонентів
+
+ 
+Рисунок А.3 — UML-діаграма пакетів
+
+ 
+Рисунок А.4 — UML-діаграма діяльності
+
+ 
+ДОДАТОК Б
+Програмний код
+
+Б.1 Взаємодія із сервером (Retrofit)
+GitHub репозиторій: RetrofitClient.kt
+
+1 object RetrofitClient {
+2     private const val BASE_URL = "https://18f49xqj-7015.uks1.devtunnels.ms/api/"
+3 
+4     private val logging = HttpLoggingInterceptor().apply {
+5         setLevel(HttpLoggingInterceptor.Level.BODY)
+6     }
+7 
+8     private val client = OkHttpClient.Builder()
+9         .addInterceptor(logging)
+10         .build()
+11 
+12     val userApi: UserApi by lazy {
+13         Retrofit.Builder()
+14             .baseUrl(BASE_URL+"users/")
+15             .addConverterFactory(GsonConverterFactory.create())
+16             .client(client)
+17             .build()
+18             .create(UserApi::class.java)
+19     }
+20 
+21     val songApi: SongApi by lazy {
+22         Retrofit.Builder()
+23             .baseUrl(BASE_URL+"songs/")
+24             .addConverterFactory(GsonConverterFactory.create())
+25             .client(client)
+26             .build()
+27             .create(SongApi::class.java)
+28     }
+29 
+30     val templateApi: TemplateApi by lazy {
+31         Retrofit.Builder()
+32             .baseUrl(BASE_URL+"templates/")
+33             .addConverterFactory(GsonConverterFactory.create())
+34             .client(client)
+35             .build()
+36             .create(TemplateApi::class.java)
+37     }
+38 
+39     val deviceApi: DeviceApi by lazy {
+40         Retrofit.Builder()
+41             .baseUrl(BASE_URL+"devices/")
+42             .addConverterFactory(GsonConverterFactory.create())
+43             .client(client)
+44             .build()
+45             .create(DeviceApi::class.java)
+46     }
+47 }
+
+
+Б.2 Взаємодія із сервером (інтерфейс із запитами до UsersController)
+GitHub репозиторій: UserApi.kt
+
+1 interface UserApi {
+2     @POST("login")
+3     fun login(@Body model: LoginModel): Call<ApiResponse<String>>
+4 
+5     @POST("register")
+6     fun register(@Body model: RegisterModel): Call<ApiResponse<String>>
+7 
+8     @PUT("logout")
+9     fun logout(@Header("Token") token: String):
+10             Call<ApiResponse<String>>
+11 }
+
+
+Б.3 Отримання даних про пісню з сервера (у ViewModel)
+GitHub репозиторій: SongDetailsViewModel.kt
+
+1     private val _songResult = MutableLiveData<Result<SongModel>>()
+2     val songResult: LiveData<Result<SongModel>> get() = _songResult
+3 
+4     fun fetchSong(songId: Int) {
+5         val call = RetrofitClient.songApi.getSong(songId)
+6 
+7         call.enqueue(object : Callback<ApiResponse<SongModel>> {
+8             override fun onResponse(call: Call<ApiResponse<SongModel>>,
+9                                     response: Response<ApiResponse<SongModel>>
+10             ) {
+11                 if (response.isSuccessful && response.body() != null) {
+12                     _songResult.postValue(Result.success(response.body()!!.data!!))
+13                 } else {
+14                     val error = response.errorBody()?.string() ?: "Failed to logout"
+15                     _songResult.postValue(Result.failure(Exception(error)))
+16                 }
+17             }
+18 
+19             override fun onFailure(call: Call<ApiResponse<SongModel>>, t: Throwable) {
+20                 _songResult.postValue(Result.failure(t))
+21             }
+22         })
+23     }
+
+
+Б.4 Програвач та візуалізатор музики
+GitHub репозиторій: WaveformFragment.kt
+
+1 class WaveformFragment : Fragment() {
+2 
+3     private lateinit var waveformSeekBar: WaveformSeekBar
+4     private lateinit var btnPlayPause: Button
+5     private var mediaPlayer: MediaPlayer? = null
+6     private var isPlaying = false
+7 
+8     private val audioUrl: String by lazy {
+9         arguments?.getString("audioUrl") ?: ""
+10     }
+11 
+12     override fun onCreateView(
+13         inflater: LayoutInflater, container: ViewGroup?,
+14         savedInstanceState: Bundle?,
+15     ): View {
+16         val view = inflater.inflate(R.layout.fragment_waveform, container, false)
+17         waveformSeekBar = view.findViewById(R.id.waveformSeekBar)
+18         btnPlayPause = view.findViewById(R.id.btnPlayPause)
+19 
+20         initializePlayer()
+21 
+22         btnPlayPause.setOnClickListener {
+23             togglePlayPause()
+24         }
+25 
+26         return view
+27     }
+28 
+29     private fun initializePlayer() {
+30         mediaPlayer = MediaPlayer().apply {
+31             setDataSource(audioUrl)
+32             setOnPreparedListener {
+33                 // This runs when the media is prepared
+34                 lifecycleScope.launch(Dispatchers.IO) {
+35                     try {
+36                         // Run this in background thread
+37                         waveformSeekBar.setSampleFrom(audioUrl)
+38 
+39                         waveformSeekBar.onProgressChanged = object : SeekBarOnProgressChanged {
+40                             override fun onProgressChanged(
+41                                 waveformSeekBar: WaveformSeekBar,
+42                                 progress: Float,
+43                                 fromUser: Boolean
+44                             ) {
+45                                 if (fromUser){
+46                                     mediaPlayer?.seekTo((progress / 100 * mediaPlayer!!.duration).toInt())
+47                                 }
+48                             }
+49                         }
+50 
+51                         // Once done, update UI (seekbar progress) on main thread
+52                         withContext(Dispatchers.Main) {
+53                             startUpdatingSeekBar()
+54                         }
+55                     } catch (e: Exception) {
+56                         e.printStackTrace()
+57                     }
+58                 }
+59             }
+60             setOnCompletionListener {
+61                 btnPlayPause.text = "Play"
+62             }
+63             prepareAsync()
+64         }
+65     }
+66 
+67     private fun togglePlayPause() {
+68         mediaPlayer?.let {
+69             if (it.isPlaying) {
+70                 it.pause()
+71                 isPlaying = false
+72                 btnPlayPause.text = "Play"
+73             } else {
+74                 it.start()
+75                 isPlaying = true
+76                 btnPlayPause.text = "Pause"
+77                 startUpdatingSeekBar()
+78             }
+79         }
+80     }
+81 
+82     private fun startUpdatingSeekBar() {
+83         view?.postDelayed(object : Runnable {
+84             override fun run() {
+85                 if (mediaPlayer != null && isPlaying) {
+86                     waveformSeekBar.progress = mediaPlayer!!.currentPosition.toFloat() / mediaPlayer!!.duration * 100
+87                     view?.postDelayed(this, 100)
+88                 }
+89             }
+90         }, 100)
+91     }
+92 
+93     override fun onDestroyView() {
+94         mediaPlayer?.release()
+95         super.onDestroyView()
+96     }
+97 
+98     companion object {
+99         fun newInstance(audioUrl: String) = WaveformFragment().apply {
+100             arguments = Bundle().apply {
+101                 putString("audioUrl", audioUrl)
+102             }
+103         }
+104     }
+105 }

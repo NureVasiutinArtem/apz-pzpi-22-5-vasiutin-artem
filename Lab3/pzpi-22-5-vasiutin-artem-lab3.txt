@@ -1,0 +1,256 @@
+Міністерство освіти і науки України 
+Харківський національний університет радіоелектроніки
+Кафедра програмної інженерії
+
+
+
+
+
+Лабораторна робота
+з дисципліни: «Архітектура програмного забезпечення»
+на тему: «Розробка web застосунку»
+
+
+
+
+
+
+Виконав 
+ст. гр. ПЗПІ-22-5
+Васютін Артем Віталійович
+
+Перевірив
+асистент кафедри ПІ 
+Дашенков Дмитро Сергійович
+
+
+
+
+Харків 2025
+ 
+МЕТА РОБОТИ
+
+	Метою роботи є розробка front-end частину програмної системи для управління світломузичними ефектами LightShow Manager.
+
+ХІД РОБОТИ
+
+В ході виконання лабораторної роботи виконувалася побудова UML діаграм прецедентів, компонентів, пакетів та діяльності (див. Додаток А). Разом, вони описують будову front-end застосунку та його взаємодію з іншими частинами системи (веб-сервер).
+В ході виконання лабораторної роботи також виконувалися дизайн та розробка цього веб застосунку для програмної системи LightShow Manager. Веб застосунок розроблявся за допомогою сучасних веб-фреймворків React.js та Vite.js, мови програмування JavaScript та технологій HTML і CSS. Розробка виконувалася у середі Visual Studio.
+Як зазначено у Vision & Scope документі, за допомогою веб додатку користувачі отримають повний доступ до функціоналу систему, який включає управління своїм акаунтом, піснями, шаблонами, ефектами та девайсами. Веб додаток підтримує локалізацію, надаючи україномовну та англомовну версії інтерфейсу за допомогою бібліотеки i18next. Веб додаток також включає адміністрування системи, яке складається в перегляді такої системної інформації як список всіх зареєстрованих користувачів та всіх доданих девайсів.
+ 
+ВИСНОВКИ
+
+В ході виконання лабораторної роботи для програмної системи для управління світломузичними ефектами LightShow Manager було побудовано UML діаграми прецедентів, компонентів, пакетів та діяльності, а також розроблено веб додаток. Веб додаток розроблявся за допомогою фреймворку React.js. Окрім основного функціоналу вказаного у Vision & Scope документі, додаток також підтримує локалізацію та функції адміністрування.
+ 
+ДОДАТОК А
+Графічні матеріали
+
+ 
+Рисунок А.1 — UML-діаграми прецедентів
+
+ 
+Рисунок А.2 — UML-діаграма компонентів
+
+ 
+Рисунок А.3 — UML-діаграма пакетів
+
+ 
+Рисунок А.4 — UML-діаграма діяльності
+
+
+ 
+ДОДАТОК Б
+Програмний код
+
+Б.1 Взаємодія із сервером (Get, Post, Put та Delete запити)
+GitHub репозиторій: serverApi.js
+
+1 export async function post(path, body, token = null) {
+2     const res = await fetch(`/api/${path}`, {
+3         method: "POST",
+4         headers: {
+5             "Content-Type": "application/json",
+6             ...(token && { Token: token })
+7         },
+8         body: JSON.stringify(body),
+9     });
+10     return res;
+11 }
+12 
+13 export async function get(path, token = null, queryParams = {}) {
+14     const query = new URLSearchParams(queryParams).toString();
+15     const url = `/api/${path}${query ? `?${query}` : ""}`;
+16 
+17     const res = await fetch(url, {
+18         method: "GET",
+19         headers: {
+20             ...(token && { Token: token }),
+21         },
+22     });
+23     return res;
+24 }
+25 
+26 export async function put(path, body, token = null) {
+27     const res = await fetch(`/api/${path}`, {
+28         method: "PUT",
+29         headers: {
+30             "Content-Type": "application/json",
+31             ...(token && { Token: token }),
+32 
+33         },
+34         body: JSON.stringify(body),
+35     });
+36     return res;
+37 }
+38 
+39 export const del = async (path, token) => {
+40     return await fetch(`/api/${path}`, {
+41         method: "DELETE",
+42         headers: {
+43             ...(token && { Token: token }),
+44         }
+45     });
+46 };
+47 
+48 export async function postForm(url, formData, token) {
+49     const res = await fetch(`https://localhost:61830/api/${url}`, {
+50         method: "POST",
+51         headers: {
+52             Token: token
+53         },
+54         body: formData
+55     });
+56     return res;
+57 }
+
+
+Б.2 Отримання даних про пісню з сервера 
+GitHub репозиторій: SongPage.jsx
+
+1 const fetchSong = async () => {
+2     const res = await get(`songs/${id}`, token);
+3     if (res.ok) {
+4         const data = await res.json();
+5         setSong(data.data);
+6         const cleanPath = data.data.path?.replace(/^\/+/, "");
+7         setAudioUrl(`https://localhost:7015/${cleanPath}`);
+8     }
+9 };
+
+
+Б.3 Додавання нової пісні
+GitHub репозиторій: AddSongModal.jsx
+
+1 function AddSongModal({ onClose, onSongAdded }) {
+2     const [file, setFile] = useState(null);
+3     const [name, setName] = useState('');
+4     const [artist, setArtist] = useState('');
+5     const [duration, setDuration] = useState(0); // milliseconds
+6     const token = localStorage.getItem("token");
+7 
+8     const { t } = useTranslation();
+9 
+10     const handleFileChange = async (e) => {
+11         const selectedFile = e.target.files[0];
+12         setFile(selectedFile);
+13 
+14         if (!selectedFile) return;
+15 
+16         try {
+17             // Extract metadata for title and artist
+18             const metadata = await mm.parseBlob(selectedFile);
+19             const title = metadata.common.title || '';
+20             const artistName = metadata.common.artist || '';
+21 
+22             setName(title || selectedFile.name.replace(/\.[^/.]+$/, ''));
+23             setArtist(artistName);
+24         } catch (err) {
+25             const baseName = selectedFile.name.replace(/\.[^/.]+$/, '');
+26             setName(baseName);
+27             setArtist('');
+28         }
+29 
+30         // Load audio and extract actual duration
+31         const audio = new Audio();
+32         audio.src = URL.createObjectURL(selectedFile);
+33         audio.onloadedmetadata = () => {
+34             const durationMs = Math.round(audio.duration * 1000);
+35             setDuration(durationMs);
+36         };
+37     };
+38 
+39     const handleSubmit = async (e) => {
+40         e.preventDefault();
+41         if (!file || !name || !artist || !duration) return;
+42 
+43         const formData = new FormData();
+44         formData.append('file', file);
+45         formData.append('name', name);
+46         formData.append('artist', artist);
+47         formData.append('duration', duration);
+48 
+49         const res = await postForm("songs/create", formData, token)
+50 
+51         if (res.ok) {
+52             onSongAdded();
+53             onClose();
+54         } else {
+55             alert(t("AddSongModal.failedCreate"));
+56         }
+57     };
+58 
+59     return (
+60         <div className="modal-overlay">
+61             <div className="modal">
+62                 <h3>{t("AddSongModal.title")}</h3>
+63                 <form onSubmit={handleSubmit}>
+64                     <input type="file" accept="audio/*" onChange={handleFileChange} required />
+65                     <input
+66                         type="text"
+67                         value={name}
+68                         onChange={(e) => setName(e.target.value)}
+69                         placeholder={t("AddSongModal.name")}
+70                         required
+71                     />
+72                     <input
+73                         type="text"
+74                         value={artist}
+75                         onChange={(e) => setArtist(e.target.value)}
+76                         placeholder={t("AddSongModal.artist")}
+77                         required
+78                     />
+79                     <input
+80                         type="text"
+81                         value={duration ? `${duration} ms` : ''}
+82                         readOnly
+83                         placeholder={t("AddSongModal.duration")}
+84                     />
+85                     <div className="modal-buttons">
+86                         <button type="submit">{t("AddSongModal.create")}</button>
+87                         <button type="button" onClick={onClose}>{t("AddSongModal.cancel")}</button>
+88                     </div>
+89                 </form>
+90             </div>
+91         </div>
+92     );
+93 }
+
+
+Б.4 Вхід в систему та зберігання токену сесії
+GitHub репозиторій: LoginPage.jsx
+
+1 const handleSubmit = async (e) => {
+2     e.preventDefault();
+3     e.preventDefault();
+4     const res = await post("users/login", form);
+5     if (res.ok) {
+6         const data = await res.json();
+7         localStorage.setItem("token", data.data);
+8         navigate("/home");
+9     } else {
+10         const message = await res.text();
+11         setError(message || t('LoginPage.errorDefault'));
+12     }
+13 };
+
+

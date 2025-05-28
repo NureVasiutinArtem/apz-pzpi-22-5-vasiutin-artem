@@ -1,0 +1,126 @@
+.song-container {
+    min-width: 500px;
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: black;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+    .song-container h2 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .song-container p {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+.waveform-canvas {
+    width: 100%;
+    max-width: 600px;
+    height: 100px;
+    margin-top: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.templates-section {
+    min-width: 400px;
+    max-width: 800px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    width: 50%;
+}
+
+    .templates-section h2 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .templates-section button {
+        display: block;
+        margin: 0 auto 2rem;
+        padding: 0.6rem 1.2rem;
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .templates-section button:hover {
+            background-color: #0056b3;
+        }
+
+    .templates-section ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .templates-section li {
+        background-color: #f9f9f9;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: background-color 0.3s;
+    }
+
+        .templates-section li:hover {
+            background-color: #e9ecef;
+        }
+
+        .templates-section li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+            .templates-section li a strong {
+                color: #000;
+            }
+
+.option-button {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1rem;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+    .option-button div {
+        align-self: center;
+    }
+
+    .option-button button {
+        margin: 0;
+    }
+
+    .option-button strong {
+        color: #000;
+    }
+
+.device-page-layout {
+    display: flex;
+    gap: 50px; 
+    margin-top: 30px;
+}
+
+.left-pane {
+    flex: 2;
+    min-width: 350px;
+    max-width: 500px;
+}
+
+.right-pane {
+    flex: 1;
+    min-width: 0; /* for flex shrinking */
+}

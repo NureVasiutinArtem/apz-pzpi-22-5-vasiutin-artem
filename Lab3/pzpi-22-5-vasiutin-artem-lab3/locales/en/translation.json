@@ -1,0 +1,202 @@
+{
+  "AccountPage": {
+    "loading": "Loading...",
+    "title": "Account Information",
+    "username": "Username",
+    "email": "Email",
+    "created": "Created",
+    "edit": "Edit",
+    "changePassword": "Change Password",
+    "errorMessage": "Something went wrong, please, try again later."
+  },
+  "DevicePage": {
+    "confirmDelete": "Are you sure you want to delete this device?",
+    "failedDelete": "Failed to delete this device.",
+    "loading": "Loading...",
+    "lastOnline": "Last online",
+    "unknown": "Unknown",
+    "currently": "Currently",
+    "on": "ON",
+    "off": "OFF",
+    "edit": "Edit",
+    "turnOff": "Turn OFF",
+    "turnOn": "Turn ON",
+    "delete": "Delete",
+    "songs": "Songs",
+    "by": "by",
+    "play": "Play",
+    "template": "Template",
+    "templates": "Templates"
+  },
+  "DeviceListPage": {
+    "devices": "Devices",
+    "registerDevice": "Register Device"
+  },
+  "EffectsListPage": {
+    "confirmDelete": "Are you sure you want to delete effect",
+    "failedDelete": "Failed to delete this effect.",
+    "effects": "Effects",
+    "addEffect": "Add Effect",
+    "steady": "Steady",
+    "blinking": "Blinking",
+    "wave": "Wave",
+    "edit": "Edit",
+    "del": "Delete"
+  },
+  "HomePage": {
+    "welcome": "Welcome to LightShow Manager!"
+  },
+  "LoginPage": {
+    "errorDefault": "Something went wrong, please, try again later.",
+    "login": "Login",
+    "loginAction": "Login"
+  },
+  "RegisterPage": {
+    "errorDefault": "Something went wrong, please, try again later.",
+    "title": "Register",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "repeatPassword": "Repeat Password",
+    "registerAction": "Register"
+  },
+  "SongPage": {
+    "confirmDelete": "Are you sure you want to delete this song?",
+    "failedDelete": "Failed to delete this song.",
+    "loading": "Loading...",
+    "artist": "Artist:",
+    "edit": "Edit",
+    "delete": "Delete",
+    "templates": "Templates",
+    "addTemplate": "Add Template"
+  },
+  "SongsListPage": {
+    "songs": "Songs",
+    "addSong": "Add Song",
+    "by": "by"
+  },
+  "TemplatePage": {
+    "confirmDelete": "Are you sure you want to delete this template?",
+    "failedDelete": "Failed to delete this template.",
+    "failedRemove": "Failed to remove the effect.",
+    "loading": "Loading...",
+    "rename": "Rename",
+    "delete": "Delete",
+    "effects": "Effects",
+    "addEffect": "Add Effect",
+    "at": "at",
+    "ms": "ms",
+    "for": "for"
+  },
+  "Header": {
+    "appName": "LightShow Manager",
+    "account": "Account",
+    "devices": "Devices",
+    "songs": "Songs",
+    "effects": "Effects",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register",
+    "admin-users": "Users"
+  },
+  "AddDeviceModal": {
+    "failedCreate": "Failed to register device.",
+    "title": "Register New Device",
+    "deviceName": "Device Name",
+    "deviceType": "Device Type",
+    "register": "Register",
+    "cancel": "Cancel"
+  },
+  "AddEffectModal": {
+    "selectEffectError": "Please select an effect.",
+    "failedCreate": "Failed to add effect.",
+    "title": "Add Effect",
+    "selectEffect": "Select an Effect:",
+    "timestamp": "Timestamp (ms):",
+    "duration": "Duration (ms):",
+    "add": "Add Effect",
+    "create": "Create New Effect",
+    "cancel": "Cancel"
+  },
+  "AddSongModal": {
+    "failedCreate": "Song upload failed.",
+    "title": "Add Song",
+    "name": "Song Name",
+    "artist": "Artist",
+    "duration": "Duration (ms):",
+    "create": "Add",
+    "cancel": "Cancel"
+  },
+  "AddTemplateModal": {
+    "defaultError": "Something went wrong, please, try again later.",
+    "title": "Add Template",
+    "name": "Template Name",
+    "create": "Add",
+    "cancel": "Cancel"
+  },
+  "ChangePasswordModal": {
+    "title": "Change Password",
+    "oldPassword": "Old Password",
+    "newPassword": "New Password",
+    "change": "Change",
+    "cancel": "Cancel"
+  },
+  "CreateEffectModal": {
+    "failedCreate": "Failed to create effect.",
+    "title": "Create New Effect",
+    "name": "Name:",
+    "type": "Type:",
+    "steady": "Steady",
+    "blinking": "Blinking",
+    "wave": "Wave",
+    "color": "Color Code:",
+    "create": "Create",
+    "cancel": "Cancel"
+  },
+  "EditAccountModal": {
+    "title": "Edit Account",
+    "username": "Username",
+    "email": "Email",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "EditDeviceModal": {
+    "title": "Edit Device",
+    "deviceName": "Device Name",
+    "deviceType": "Device Type",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "EditEffectModal": {
+    "failedEdit": "Failed to edit effect.",
+    "title": "Edit Effect",
+    "name": "Effect Name",
+    "type": "Type:",
+    "steady": "Steady",
+    "blinking": "Blinking",
+    "wave": "Wave",
+    "color": "Color Code:",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "EditSongModal": {
+    "title": "Edit Song Data",
+    "name": "Song Name",
+    "artist": "Artist",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "EditTemplateModal": {
+    "title": "Rename Template",
+    "name": "Template Name",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "Waveform": {
+    "pause": "Pause",
+    "play": "Playe"
+  },
+  "AdminUsersPage": {
+    "title": "Users"
+  }
+}

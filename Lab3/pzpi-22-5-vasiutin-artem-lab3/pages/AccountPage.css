@@ -1,0 +1,40 @@
+.account-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #e8f4ff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 100, 200, 0.1);
+}
+
+    .account-container h2 {
+        text-align: center;
+        color: #003366;
+    }
+
+.account-info p {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #003366;
+}
+
+.account-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+    .account-actions button {
+        padding: 0.5rem 1.2rem;
+        background-color: #3399ff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        .account-actions button:hover {
+            background-color: #267acc;
+        }
